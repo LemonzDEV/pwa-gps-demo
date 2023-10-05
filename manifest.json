@@ -1,0 +1,16 @@
+{
+  "name": "App PWA Geolocalizzazione",
+  "short_name": "Geoloc App",
+  "description": "Una semplice app PWA che richiede la posizione dell'utente.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

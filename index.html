@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA GPS</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icons/icon-192x192.png">
+</head>
+<body>
+    <h1>PWA con GPS</h1>
+    <p>Click button to get your position:</p>
+    <button id="getLocation">Get position</button>
+    <p>Your coordinates:</p>
+    <p id="locationData"></p>
+
+
+
+    <script>
+        // Funzione per ottenere la posizione dell'utente
+        function getLocation() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    const accuracy = position.coords.accuracy;
+                    const locationData = `Latitudine: ${latitude}<br>Longitudine: ${longitude}<br>Precisione: ${accuracy} metri`;
+                    document.getElementById("locationData").innerHTML = locationData;
+                }, function(error) {
+                    // Gestione degli errori
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            alert("Permesso di geolocalizzazione negato.");
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            alert("Posizione non disponibile.");
+                            break;
+                        case error.TIMEOUT:
+                            alert("Richiesta di geolocalizzazione scaduta.");
+                            break;
+                        case error.UNKNOWN_ERROR:
+                            alert("Si è verificato un errore sconosciuto.");
+                            break;
+                    }
+                });
+            } else {
+                alert("La geolocalizzazione non è supportata dal tuo browser.");
+            }
+        }
+
+ 
+
+        // Aggiungi un gestore di eventi al pulsante di geolocalizzazione
+        document.getElementById("getLocation").addEventListener("click", getLocation);
+
+       
+    </script>
+</body>
+</html>
